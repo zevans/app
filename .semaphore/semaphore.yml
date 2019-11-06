@@ -27,6 +27,7 @@ blocks:
       env_vars:
         - name: FOO_1
           value: BAR_1
+    dependencies: []
   - name: Unit tests
     task:
       prologue:
@@ -42,8 +43,20 @@ blocks:
         - name: Unit tests 3/3
           commands:
             - echo "run 3/3"
+    dependencies:
+      - Lint
   - name: 'Block #3'
     task:
       jobs:
         - name: 'Job #1'
           commands: []
+    dependencies:
+      - Unit tests
+  - name: 'Block #4'
+    dependencies:
+      - Lint
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - echo "Hi from Block 4"
