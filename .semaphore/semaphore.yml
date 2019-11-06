@@ -24,6 +24,9 @@ blocks:
         containers:
           - name: main
             image: 'semaphoreci/ubuntu:18.04'
+      env_vars:
+        - name: FOO_1
+          value: BAR_1
   - name: Unit tests
     task:
       prologue:
